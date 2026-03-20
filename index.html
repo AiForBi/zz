@@ -9,7 +9,8 @@
   <script>
     !function(f,b,e,v,n,t,s){
       if(f.fbq)return;
-      n=f.fbq=function(){n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
+      n=f.fbq=function(){n.callMethod ?
+      n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
       if(!f._fbq)f._fbq=n;
       n.push=n;
       n.loaded=!0;
@@ -20,7 +21,7 @@
       t.src=v;
       s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s);
-    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
     fbq('init', '25936076819410061');
     fbq('track', 'PageView');
@@ -170,7 +171,7 @@
       padding:16px 18px;
       font-size:16px;
       font-weight:700;
-      transition:transform .15s ease, opacity .15s ease, background .2s ease;
+      transition:transform .15s ease, opacity .15s ease, background .2s ease, border-color .2s ease;
       text-decoration:none;
       display:block;
       text-align:center;
@@ -192,6 +193,25 @@
       color:#cbd5e1;
       background:rgba(255,255,255,.04);
       border:1px solid var(--line);
+    }
+
+    .secondary-contact{
+      margin-top:14px;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .contact-inline{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .contact-inline .ghost-btn{
+      margin-top:0;
     }
 
     .question-title{
@@ -388,6 +408,7 @@
       .topbar{padding:16px 16px 0}
       .question-title{font-size:22px}
       .hero-title{font-size:30px}
+      .contact-inline{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -422,16 +443,16 @@
       <div class="content">
         <!-- Welcome -->
         <section id="screenWelcome">
-          <h1 class="hero-title">How much time and money can AI save your business?</h1>
+          <h1 class="hero-title">How much money and time can AI save your business?</h1>
           <p class="hero-subtitle">
-            Answer 5 quick questions and get a personalized estimate:
-            what processes to automate, how many hours you can save, and what ROI AI implementation can deliver.
+            Answer 5 short questions and get a personalized estimate:
+            what processes you can automate, how many hours you can save, and what ROI AI implementation can deliver.
           </p>
 
           <ul class="hero-points">
-            <li>✔ What processes can be automated right now</li>
-            <li>✔ How much time your team is losing to routine work</li>
-            <li>✔ Which AI scenario will deliver the fastest results</li>
+            <li>✔ Which processes you can automate right now</li>
+            <li>✔ How much time your team is losing on routine work</li>
+            <li>✔ Which AI use case will bring the fastest results</li>
           </ul>
 
           <div class="chips">
@@ -440,7 +461,32 @@
             <div class="chip">🤖 AI analysis</div>
           </div>
 
-          <button class="main-btn" id="startBtn">Start Business Analysis</button>
+          <button class="main-btn" id="startBtn" type="button">Start business analysis</button>
+
+          <div class="secondary-contact">
+            Don’t want to take the quiz? You can contact us directly
+          </div>
+
+          <div class="contact-inline">
+            <a
+              class="ghost-btn"
+              id="telegramDirectBtn"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Message on Telegram
+            </a>
+            <a
+              class="ghost-btn"
+              id="whatsappDirectBtn"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Message on WhatsApp
+            </a>
+          </div>
         </section>
 
         <!-- Quiz -->
@@ -448,7 +494,7 @@
           <h2 class="question-title" id="questionTitle"></h2>
           <p class="question-sub" id="questionSub">Choose one option</p>
           <div class="answers" id="answers"></div>
-          <button class="back-btn hidden" id="backBtn">← Back</button>
+          <button class="back-btn hidden" id="backBtn" type="button">← Back</button>
         </section>
 
         <!-- Analyzing -->
@@ -457,11 +503,11 @@
             <div class="spinner"></div>
             <h2 class="question-title" style="text-align:center;">AI is analyzing your business…</h2>
             <p class="question-sub" style="text-align:center;">
-              This helps calculate your automation potential, time savings, and the best-fit AI scenario.
+              This helps calculate your automation potential, time savings, and the most suitable AI use case.
             </p>
             <div class="analysis-list">
               <div class="analysis-item">✔ Analyzing workload and repetitive tasks</div>
-              <div class="analysis-item">✔ Estimating inquiries and lead volume</div>
+              <div class="analysis-item">✔ Estimating inquiry and lead volume</div>
               <div class="analysis-item">✔ Calculating monthly savings potential</div>
             </div>
           </div>
@@ -469,9 +515,9 @@
 
         <!-- Result -->
         <section id="screenResult" class="hidden">
-          <h2 class="question-title">Analysis Result</h2>
+          <h2 class="question-title">Analysis result</h2>
           <p class="question-sub" id="resultSubtitle">
-            For your business, AI can take over a significant share of routine processes within the first few weeks.
+            For your business, AI can handle a significant share of routine processes within the first few weeks.
           </p>
 
           <div class="result-grid">
@@ -481,7 +527,7 @@
             </div>
             <div class="metric">
               <div class="metric-label">Time savings / month</div>
-              <div class="metric-value" id="hoursValue">0 h</div>
+              <div class="metric-value" id="hoursValue">0 hrs</div>
             </div>
             <div class="metric">
               <div class="metric-label">Potential savings</div>
@@ -500,27 +546,27 @@
           </div>
 
           <div class="panel">
-            <h3>Why this is profitable</h3>
+            <h3>Why this is worth it</h3>
             <p id="roiText"></p>
           </div>
 
           <div class="notice">
-            Only <strong>10 free AI audits</strong> with a personalized implementation recommendation are available this month.
+            This month, only <strong>10 free AI audits</strong> with a personalized implementation recommendation are available.
           </div>
 
-          <button class="main-btn" id="openLeadFormBtn">Get Your Personalized AI Plan</button>
+          <button class="main-btn" id="openLeadFormBtn" type="button">Get my personal AI plan</button>
         </section>
 
         <!-- Contact -->
         <section id="screenForm" class="hidden">
           <h2 class="question-title">Where should we send your personalized AI plan?</h2>
           <p class="question-sub">
-            We focus on messengers — it is much faster and more convenient than email or phone.
+            We focus on messengers because they are much faster and more convenient than email or phone.
           </p>
 
           <div class="messenger-note">
-            The main contact channel is <strong>Telegram or WhatsApp</strong>.
-            You will receive a short personalized breakdown of which processes to automate first and which scenario will deliver the fastest ROI.
+            Our main contact channels are <strong>Telegram and WhatsApp</strong>.
+            You’ll get a short personalized breakdown of which processes to automate first and which scenario can deliver the fastest ROI.
           </div>
 
           <div class="panel">
@@ -532,7 +578,7 @@
           <a class="ghost-btn" id="whatsappBtn" href="#" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
 
           <div class="footer-note">
-            After clicking, your messenger will open with a ready-made message and your quiz result.
+            After clicking, your messenger will open with a pre-filled message and your quiz result.
           </div>
         </section>
       </div>
@@ -546,12 +592,12 @@
     const questions = [
       {
         id: "stage",
-        q: "What stage is your business at right now?",
-        sub: "This affects process complexity and the potential for AI adoption.",
+        q: "What stage is your business currently at?",
+        sub: "This affects process complexity and AI implementation potential.",
         options: [
           { text: "Just getting started", score: 1, value: "Just getting started" },
-          { text: "We have stable clients", score: 2, value: "We have stable clients" },
-          { text: "We are scaling actively", score: 4, value: "We are scaling actively" },
+          { text: "We have steady clients", score: 2, value: "We have steady clients" },
+          { text: "We are actively scaling", score: 4, value: "We are actively scaling" },
           { text: "We are already a large business", score: 5, value: "We are already a large business" }
         ]
       },
@@ -570,14 +616,14 @@
       },
       {
         id: "pain",
-        q: "What task takes the most time from your team?",
+        q: "What task takes up the most time for your team?",
         sub: "This helps identify the first AI use case with the fastest ROI.",
         options: [
-          { text: "Customer replies", score: 5, value: "Customer replies" },
-          { text: "Lead processing", score: 5, value: "Lead processing" },
+          { text: "Replying to customers", score: 5, value: "Replying to customers" },
+          { text: "Processing inquiries", score: 5, value: "Processing inquiries" },
           { text: "Sales and lead communication", score: 5, value: "Sales and lead communication" },
           { text: "Marketing and content creation", score: 3, value: "Marketing and content creation" },
-          { text: "Reports and data analysis", score: 4, value: "Reports and data analysis" },
+          { text: "Reporting and data analysis", score: 4, value: "Reporting and data analysis" },
           { text: "Internal communication", score: 3, value: "Internal communication" }
         ]
       },
@@ -594,8 +640,8 @@
       },
       {
         id: "volume",
-        q: "How many messages or leads do you receive from clients?",
-        sub: "A high volume of inquiries increases the value of an AI assistant.",
+        q: "How many messages or inquiries do you receive from customers?",
+        sub: "A high volume of incoming requests increases the value of an AI assistant.",
         options: [
           { text: "Up to 10 per day", score: 1, value: "Up to 10 per day" },
           { text: "10–50 per day", score: 3, value: "10–50 per day" },
@@ -633,12 +679,29 @@
     const openLeadFormBtn = document.getElementById("openLeadFormBtn");
     const telegramBtn = document.getElementById("telegramBtn");
     const whatsappBtn = document.getElementById("whatsappBtn");
+    const telegramDirectBtn = document.getElementById("telegramDirectBtn");
+    const whatsappDirectBtn = document.getElementById("whatsappDirectBtn");
     const messagePreview = document.getElementById("messagePreview");
 
     function trackEvent(name, params = {}) {
       if (typeof fbq === "function") {
         fbq("trackCustom", name, params);
       }
+    }
+
+    function buildDirectContactMessage() {
+      return [
+        "Hello!",
+        "",
+        "I would like to discuss AI implementation for my business without taking the quiz.",
+        "Could you tell me what solutions you offer and where it makes the most sense to start?"
+      ].join("\n");
+    }
+
+    function setupDirectContactLinks() {
+      const directMessage = encodeURIComponent(buildDirectContactMessage());
+      telegramDirectBtn.href = `https://t.me/${TELEGRAM_USERNAME}?text=${directMessage}`;
+      whatsappDirectBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${directMessage}`;
     }
 
     startBtn.addEventListener("click", () => {
@@ -683,6 +746,7 @@
     telegramBtn.addEventListener("click", () => {
       trackEvent("TelegramClicked", {
         destination: "telegram",
+        source: "result_form",
         username: TELEGRAM_USERNAME
       });
     });
@@ -690,6 +754,23 @@
     whatsappBtn.addEventListener("click", () => {
       trackEvent("WhatsAppClicked", {
         destination: "whatsapp",
+        source: "result_form",
+        phone: WHATSAPP_NUMBER
+      });
+    });
+
+    telegramDirectBtn.addEventListener("click", () => {
+      trackEvent("DirectContactClicked", {
+        destination: "telegram",
+        source: "welcome_screen",
+        username: TELEGRAM_USERNAME
+      });
+    });
+
+    whatsappDirectBtn.addEventListener("click", () => {
+      trackEvent("DirectContactClicked", {
+        destination: "whatsapp",
+        source: "welcome_screen",
         phone: WHATSAPP_NUMBER
       });
     });
@@ -807,7 +888,7 @@
       };
 
       document.getElementById("automationValue").textContent = `${state.result.automation}%`;
-      document.getElementById("hoursValue").textContent = `${state.result.hours} h`;
+      document.getElementById("hoursValue").textContent = `${state.result.hours} hrs`;
       document.getElementById("moneyValue").textContent = formatCurrency(state.result.money);
 
       const pain = state.answers.pain?.value || "";
@@ -817,35 +898,35 @@
 
       const automations = [];
 
-      if (pain.includes("Customer replies")) {
+      if (pain.includes("Replying to customers")) {
         automations.push("24/7 customer replies through an AI assistant");
-        automations.push("FAQ and typical inquiry handling");
+        automations.push("FAQ handling and common request automation");
       }
-      if (pain.includes("Lead processing")) {
-        automations.push("Automatic lead processing and distribution");
+      if (pain.includes("Processing inquiries")) {
+        automations.push("Automatic inquiry processing and routing");
         automations.push("Call booking and lead qualification");
       }
       if (pain.includes("Sales")) {
-        automations.push("AI lead qualification and first-touch sales script");
+        automations.push("AI lead qualification and first-line sales scripting");
         automations.push("Lead nurturing through messengers");
       }
       if (pain.includes("Marketing")) {
-        automations.push("Content generation and AI support for marketing");
+        automations.push("Content generation and AI marketing assistant");
       }
-      if (pain.includes("Reports")) {
-        automations.push("Auto-reports, analytics, and summaries");
+      if (pain.includes("Reporting")) {
+        automations.push("Automated reports, analytics, and summaries");
       }
       if (pain.includes("Internal")) {
         automations.push("AI knowledge base and internal team support");
       }
 
       if (volume.includes("50–200") || volume.includes("200+")) {
-        automations.push("Handling a high volume of inquiries without expanding the team");
+        automations.push("Handling a large volume of requests without expanding the team");
       }
 
       if (automations.length < 4) {
-        automations.push("Lead qualification and inquiry prioritization");
-        automations.push("Data collection and short report preparation");
+        automations.push("Lead qualification and request prioritization");
+        automations.push("Data collection and quick reporting");
       }
 
       const uniqueAutomations = [...new Set(automations)].slice(0, 5);
@@ -860,23 +941,23 @@
 
       let solution = "🤖 AI Business Assistant";
       if (pain.includes("Sales")) solution = "🤖 AI Sales Assistant";
-      if (pain.includes("Customer replies")) solution = "🤖 AI Support Assistant";
-      if (pain.includes("Reports")) solution = "🤖 AI Analytics Assistant";
+      if (pain.includes("Replying to customers")) solution = "🤖 AI Support Assistant";
+      if (pain.includes("Reporting")) solution = "🤖 AI Analytics Assistant";
       if (pain.includes("Marketing")) solution = "🤖 AI Marketing Assistant";
 
-      let solutionText = `${solution} is the best scenario for a business in the “${niche}” niche. `;
-      solutionText += `It can automate the task of “${pain}”, reduce manual workload at a volume of “${volume}”, and cut routine work at the level of “${time}”. `;
-      solutionText += `The first impact is usually achieved through quick automation of inquiries, lead handling, lead qualification, and reporting.`;
+      let solutionText = `${solution} is the best-fit scenario for a business in the “${niche}” niche. `;
+      solutionText += `It can automate the task “${pain}”, reduce manual workload at a volume of “${volume}”, and cut routine work at the level of “${time}”. `;
+      solutionText += `The first impact usually comes from fast automation of inquiries, requests, lead qualification, and reporting.`;
 
       document.getElementById("solutionText").textContent = solutionText;
 
-      let roiText = `With your current process volume, the main potential lies in reducing manual routine, speeding up responses to customers, and reducing lost leads. `;
-      roiText += `For a business profile like yours, AI most often pays off through team time savings, faster lead processing, and more consistent conversion from incoming inquiries.`;
+      let roiText = `With your process volume, the main opportunity lies in reducing manual routine, speeding up customer response time, and minimizing lead loss. `;
+      roiText += `For this business profile, AI usually pays off through team time savings, faster inquiry handling, and more stable conversion from inbound leads.`;
 
       document.getElementById("roiText").textContent = roiText;
 
       document.getElementById("resultSubtitle").textContent =
-        `We calculated the result based on your answers about business stage, niche, main operational pain point, routine workload, and inquiry volume.`;
+        `We calculated this result based on your answers about business stage, niche, main operational pain point, routine workload, and inquiry volume.`;
 
       trackEvent("QuizResultShown", {
         automation_percent: state.result.automation,
@@ -899,7 +980,7 @@
         "",
         "My result:",
         `• Automation potential: ${state.result.automation}%`,
-        `• Time savings: ${state.result.hours} h/month`,
+        `• Time savings: ${state.result.hours} hrs/month`,
         `• Potential savings: ${formatCurrency(state.result.money)}`,
         "",
         "My answers:",
@@ -922,6 +1003,8 @@
       telegramBtn.href = `https://t.me/${TELEGRAM_USERNAME}?text=${encodedMessage}`;
       whatsappBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
     }
+
+    setupDirectContactLinks();
   </script>
 </body>
 </html>
