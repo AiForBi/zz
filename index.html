@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiForBiz — How Much Can AI Save Your Business?</title>
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;
+      n=f.fbq=function(){n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n;
+      n.loaded=!0;
+      n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);
+      t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '25936076819410061');
+    fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
+
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#11182d;
+      --panel-2:#0f172a;
+      --muted:#94a3b8;
+      --text:#f8fafc;
+      --line:rgba(255,255,255,.08);
+      --primary:#7c3aed;
+      --primary-2:#4f46e5;
+      --success:#16a34a;
+      --danger:#ef4444;
+      --shadow:0 20px 60px rgba(0,0,0,.45);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+
+    body{
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,58,237,.22), transparent 28%),
+        radial-gradient(circle at top right, rgba(79,70,229,.18), transparent 24%),
+        linear-gradient(180deg, #0a0f1d 0%, #0b1020 100%);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .shell{
+      width:100%;
+      max-width:720px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      overflow:hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar{
+      padding:18px 22px 0;
+    }
+
+    .topline{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:12px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+
+    .brand-logo{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      object-fit:cover;
+      display:block;
+      box-shadow:0 8px 20px rgba(124,58,237,.25);
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+    }
+
+    .step-label{
+      color:var(--muted);
+      font-size:14px;
+      white-space:nowrap;
+    }
+
+    .progress{
+      height:8px;
+      background:rgba(255,255,255,.06);
+      border-radius:999px;
+      overflow:hidden;
+    }
+
+    .progress-bar{
+      height:100%;
+      width:0%;
+      border-radius:999px;
+      background:linear-gradient(90deg,var(--primary),var(--primary-2));
+      transition:width .35s ease;
+      box-shadow:0 0 24px rgba(124,58,237,.45);
+    }
+
+    .content{
+      padding:26px 22px 22px;
+    }
+
+    .hero-title{
+      margin:0 0 10px;
+      font-size:clamp(28px,4vw,40px);
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .hero-subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .hero-points{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin:22px 0 0;
+      padding:0;
+      list-style:none;
+    }
+
+    .hero-points li{
+      padding:12px 14px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(255,255,255,.03);
+      color:#e2e8f0;
+    }
+
+    .main-btn, .ghost-btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius:16px;
+      padding:16px 18px;
+      font-size:16px;
+      font-weight:700;
+      transition:transform .15s ease, opacity .15s ease, background .2s ease;
+      text-decoration:none;
+      display:block;
+      text-align:center;
+    }
+
+    .main-btn:hover, .ghost-btn:hover{transform:translateY(-1px)}
+
+    .main-btn{
+      width:100%;
+      margin-top:22px;
+      color:white;
+      background:linear-gradient(135deg,var(--primary),var(--primary-2));
+      box-shadow:0 14px 30px rgba(79,70,229,.28);
+    }
+
+    .ghost-btn{
+      width:100%;
+      margin-top:10px;
+      color:#cbd5e1;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+    }
+
+    .question-title{
+      font-size:26px;
+      line-height:1.2;
+      margin:0 0 8px;
+      letter-spacing:-.02em;
+    }
+
+    .question-sub{
+      margin:0 0 22px;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .answers{
+      display:grid;
+      gap:12px;
+    }
+
+    .answer-btn{
+      width:100%;
+      text-align:left;
+      padding:16px 16px;
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      border:1px solid var(--line);
+      border-radius:16px;
+      cursor:pointer;
+      transition:all .18s ease;
+      font-size:15px;
+      line-height:1.4;
+    }
+
+    .answer-btn:hover{
+      background:rgba(255,255,255,.06);
+      border-color:rgba(124,58,237,.45);
+      transform:translateY(-1px);
+    }
+
+    .answer-btn.selected{
+      background:rgba(124,58,237,.14);
+      border-color:rgba(124,58,237,.55);
+      box-shadow:0 0 0 3px rgba(124,58,237,.12);
+    }
+
+    .back-btn{
+      margin-top:14px;
+      background:none;
+      border:none;
+      color:var(--muted);
+      cursor:pointer;
+      font-size:14px;
+      padding:6px 2px;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .chip{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:#dbeafe;
+      font-size:13px;
+    }
+
+    .analyzing{
+      text-align:center;
+      padding:30px 10px 8px;
+    }
+
+    .spinner{
+      width:68px;
+      height:68px;
+      margin:0 auto 22px;
+      border-radius:50%;
+      border:4px solid rgba(255,255,255,.08);
+      border-top-color:var(--primary);
+      animation:spin 1s linear infinite;
+      box-shadow:0 0 40px rgba(124,58,237,.22);
+    }
+
+    @keyframes spin{
+      to{transform:rotate(360deg)}
+    }
+
+    .analysis-list{
+      display:grid;
+      gap:10px;
+      margin:18px 0 0;
+      text-align:left;
+    }
+
+    .analysis-item{
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:#e2e8f0;
+    }
+
+    .result-grid{
+      display:grid;
+      gap:14px;
+      grid-template-columns:repeat(3,1fr);
+      margin:22px 0;
+    }
+
+    .metric{
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px 16px;
+    }
+
+    .metric-label{
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:8px;
+    }
+
+    .metric-value{
+      font-size:26px;
+      font-weight:800;
+      letter-spacing:-.02em;
+    }
+
+    .panel{
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px 16px;
+      margin-top:14px;
+    }
+
+    .panel h3{
+      margin:0 0 10px;
+      font-size:18px;
+    }
+
+    .panel p{
+      margin:0;
+      color:#dbe4f0;
+      line-height:1.65;
+      white-space:pre-line;
+    }
+
+    .list{
+      margin:0;
+      padding-left:18px;
+      color:#e5eefb;
+      line-height:1.75;
+    }
+
+    .notice{
+      margin-top:14px;
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(22,163,74,.08);
+      border:1px solid rgba(22,163,74,.22);
+      color:#dcfce7;
+      font-size:14px;
+    }
+
+    .messenger-note{
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(124,58,237,.08);
+      border:1px solid rgba(124,58,237,.24);
+      color:#e9ddff;
+      line-height:1.55;
+      font-size:14px;
+    }
+
+    .footer-note{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:12px;
+      text-align:center;
+      line-height:1.5;
+    }
+
+    .hidden{display:none !important}
+
+    @media (max-width:700px){
+      .result-grid{grid-template-columns:1fr}
+      .content{padding:22px 16px 18px}
+      .topbar{padding:16px 16px 0}
+      .question-title{font-size:22px}
+      .hero-title{font-size:30px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Meta Pixel Noscript -->
+  <noscript>
+    <img
+      height="1"
+      width="1"
+      style="display:none"
+      src="https://www.facebook.com/tr?id=25936076819410061&ev=PageView&noscript=1"
+      alt=""
+    />
+  </noscript>
+  <!-- End Meta Pixel Noscript -->
+
+  <div class="shell">
+    <div class="card">
+      <div class="topbar">
+        <div class="topline">
+          <div class="brand">
+            <img src="Aibiz.png" alt="AiForBiz" class="brand-logo" />
+            <div>AiForBiz</div>
+          </div>
+          <div class="step-label" id="stepLabel">1 / 5</div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+
+      <div class="content">
+        <!-- Welcome -->
+        <section id="screenWelcome">
+          <h1 class="hero-title">How much time and money can AI save your business?</h1>
+          <p class="hero-subtitle">
+            Answer 5 quick questions and get a personalized estimate:
+            what processes to automate, how many hours you can save, and what ROI AI implementation can deliver.
+          </p>
+
+          <ul class="hero-points">
+            <li>✔ What processes can be automated right now</li>
+            <li>✔ How much time your team is losing to routine work</li>
+            <li>✔ Which AI scenario will deliver the fastest results</li>
+          </ul>
+
+          <div class="chips">
+            <div class="chip">⏱ Less than 1 minute</div>
+            <div class="chip">📈 Personalized estimate</div>
+            <div class="chip">🤖 AI analysis</div>
+          </div>
+
+          <button class="main-btn" id="startBtn">Start Business Analysis</button>
+        </section>
+
+        <!-- Quiz -->
+        <section id="screenQuiz" class="hidden">
+          <h2 class="question-title" id="questionTitle"></h2>
+          <p class="question-sub" id="questionSub">Choose one option</p>
+          <div class="answers" id="answers"></div>
+          <button class="back-btn hidden" id="backBtn">← Back</button>
+        </section>
+
+        <!-- Analyzing -->
+        <section id="screenAnalyzing" class="hidden">
+          <div class="analyzing">
+            <div class="spinner"></div>
+            <h2 class="question-title" style="text-align:center;">AI is analyzing your business…</h2>
+            <p class="question-sub" style="text-align:center;">
+              This helps calculate your automation potential, time savings, and the best-fit AI scenario.
+            </p>
+            <div class="analysis-list">
+              <div class="analysis-item">✔ Analyzing workload and repetitive tasks</div>
+              <div class="analysis-item">✔ Estimating inquiries and lead volume</div>
+              <div class="analysis-item">✔ Calculating monthly savings potential</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Result -->
+        <section id="screenResult" class="hidden">
+          <h2 class="question-title">Analysis Result</h2>
+          <p class="question-sub" id="resultSubtitle">
+            For your business, AI can take over a significant share of routine processes within the first few weeks.
+          </p>
+
+          <div class="result-grid">
+            <div class="metric">
+              <div class="metric-label">Automation potential</div>
+              <div class="metric-value" id="automationValue">0%</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Time savings / month</div>
+              <div class="metric-value" id="hoursValue">0 h</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Potential savings</div>
+              <div class="metric-value" id="moneyValue">$0</div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>What can be automated</h3>
+            <ul class="list" id="automationList"></ul>
+          </div>
+
+          <div class="panel">
+            <h3>Recommended solution</h3>
+            <p id="solutionText"></p>
+          </div>
+
+          <div class="panel">
+            <h3>Why this is profitable</h3>
+            <p id="roiText"></p>
+          </div>
+
+          <div class="notice">
+            Only <strong>10 free AI audits</strong> with a personalized implementation recommendation are available this month.
+          </div>
+
+          <button class="main-btn" id="openLeadFormBtn">Get Your Personalized AI Plan</button>
+        </section>
+
+        <!-- Contact -->
+        <section id="screenForm" class="hidden">
+          <h2 class="question-title">Where should we send your personalized AI plan?</h2>
+          <p class="question-sub">
+            We focus on messengers — it is much faster and more convenient than email or phone.
+          </p>
+
+          <div class="messenger-note">
+            The main contact channel is <strong>Telegram or WhatsApp</strong>.
+            You will receive a short personalized breakdown of which processes to automate first and which scenario will deliver the fastest ROI.
+          </div>
+
+          <div class="panel">
+            <h3>Message preview</h3>
+            <p id="messagePreview"></p>
+          </div>
+
+          <a class="main-btn" id="telegramBtn" href="#" target="_blank" rel="noopener noreferrer">Message on Telegram</a>
+          <a class="ghost-btn" id="whatsappBtn" href="#" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+
+          <div class="footer-note">
+            After clicking, your messenger will open with a ready-made message and your quiz result.
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const TELEGRAM_USERNAME = "aiforbiz_manager";
+    const WHATSAPP_NUMBER = "18255727624";
+
+    const questions = [
+      {
+        id: "stage",
+        q: "What stage is your business at right now?",
+        sub: "This affects process complexity and the potential for AI adoption.",
+        options: [
+          { text: "Just getting started", score: 1, value: "Just getting started" },
+          { text: "We have stable clients", score: 2, value: "We have stable clients" },
+          { text: "We are scaling actively", score: 4, value: "We are scaling actively" },
+          { text: "We are already a large business", score: 5, value: "We are already a large business" }
+        ]
+      },
+      {
+        id: "niche",
+        q: "What industry is your business in?",
+        sub: "Some industries monetize automation especially well.",
+        options: [
+          { text: "E-commerce / online store", score: 4, value: "E-commerce / online store" },
+          { text: "SaaS / IT service", score: 4, value: "SaaS / IT service" },
+          { text: "Consulting / services", score: 3, value: "Consulting / services" },
+          { text: "Education", score: 3, value: "Education" },
+          { text: "Marketing / agency", score: 4, value: "Marketing / agency" },
+          { text: "Other", score: 2, value: "Other" }
+        ]
+      },
+      {
+        id: "pain",
+        q: "What task takes the most time from your team?",
+        sub: "This helps identify the first AI use case with the fastest ROI.",
+        options: [
+          { text: "Customer replies", score: 5, value: "Customer replies" },
+          { text: "Lead processing", score: 5, value: "Lead processing" },
+          { text: "Sales and lead communication", score: 5, value: "Sales and lead communication" },
+          { text: "Marketing and content creation", score: 3, value: "Marketing and content creation" },
+          { text: "Reports and data analysis", score: 4, value: "Reports and data analysis" },
+          { text: "Internal communication", score: 3, value: "Internal communication" }
+        ]
+      },
+      {
+        id: "time",
+        q: "How much time per day does your team spend on repetitive tasks?",
+        sub: "The higher the routine workload, the stronger the impact of automation.",
+        options: [
+          { text: "Less than 1 hour", score: 1, value: "Less than 1 hour" },
+          { text: "1–3 hours", score: 3, value: "1–3 hours" },
+          { text: "3–6 hours", score: 5, value: "3–6 hours" },
+          { text: "More than 6 hours", score: 7, value: "More than 6 hours" }
+        ]
+      },
+      {
+        id: "volume",
+        q: "How many messages or leads do you receive from clients?",
+        sub: "A high volume of inquiries increases the value of an AI assistant.",
+        options: [
+          { text: "Up to 10 per day", score: 1, value: "Up to 10 per day" },
+          { text: "10–50 per day", score: 3, value: "10–50 per day" },
+          { text: "50–200 per day", score: 5, value: "50–200 per day" },
+          { text: "200+ per day", score: 7, value: "200+ per day" }
+        ]
+      }
+    ];
+
+    const state = {
+      current: -1,
+      score: 0,
+      answers: {},
+      result: {
+        automation: 0,
+        hours: 0,
+        money: 0
+      }
+    };
+
+    const screenWelcome = document.getElementById("screenWelcome");
+    const screenQuiz = document.getElementById("screenQuiz");
+    const screenAnalyzing = document.getElementById("screenAnalyzing");
+    const screenResult = document.getElementById("screenResult");
+    const screenForm = document.getElementById("screenForm");
+
+    const questionTitle = document.getElementById("questionTitle");
+    const questionSub = document.getElementById("questionSub");
+    const answersEl = document.getElementById("answers");
+    const backBtn = document.getElementById("backBtn");
+    const progressBar = document.getElementById("progressBar");
+    const stepLabel = document.getElementById("stepLabel");
+
+    const startBtn = document.getElementById("startBtn");
+    const openLeadFormBtn = document.getElementById("openLeadFormBtn");
+    const telegramBtn = document.getElementById("telegramBtn");
+    const whatsappBtn = document.getElementById("whatsappBtn");
+    const messagePreview = document.getElementById("messagePreview");
+
+    function trackEvent(name, params = {}) {
+      if (typeof fbq === "function") {
+        fbq("trackCustom", name, params);
+      }
+    }
+
+    startBtn.addEventListener("click", () => {
+      state.current = 0;
+      state.score = 0;
+      state.answers = {};
+      state.result = { automation: 0, hours: 0, money: 0 };
+
+      showQuiz();
+      renderQuestion();
+
+      trackEvent("QuizStarted", {
+        quiz_name: "AiForBiz Business Audit"
+      });
+    });
+
+    backBtn.addEventListener("click", () => {
+      if (state.current <= 0) return;
+
+      state.current -= 1;
+      renderQuestion();
+
+      trackEvent("QuizBackClicked", {
+        question_id: questions[state.current].id,
+        question_index: state.current + 1
+      });
+    });
+
+    openLeadFormBtn.addEventListener("click", () => {
+      buildMessengerLinks();
+      hideAllScreens();
+      screenForm.classList.remove("hidden");
+      updateProgress(100, "Done");
+
+      trackEvent("LeadFormOpened", {
+        automation: state.result.automation,
+        hours: state.result.hours,
+        money: state.result.money
+      });
+    });
+
+    telegramBtn.addEventListener("click", () => {
+      trackEvent("TelegramClicked", {
+        destination: "telegram",
+        username: TELEGRAM_USERNAME
+      });
+    });
+
+    whatsappBtn.addEventListener("click", () => {
+      trackEvent("WhatsAppClicked", {
+        destination: "whatsapp",
+        phone: WHATSAPP_NUMBER
+      });
+    });
+
+    function hideAllScreens(){
+      screenWelcome.classList.add("hidden");
+      screenQuiz.classList.add("hidden");
+      screenAnalyzing.classList.add("hidden");
+      screenResult.classList.add("hidden");
+      screenForm.classList.add("hidden");
+    }
+
+    function showQuiz(){
+      hideAllScreens();
+      screenQuiz.classList.remove("hidden");
+    }
+
+    function renderQuestion(){
+      const q = questions[state.current];
+      const selectedValue = state.answers[q.id]?.value || null;
+
+      questionTitle.textContent = q.q;
+      questionSub.textContent = q.sub;
+      answersEl.innerHTML = "";
+
+      q.options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.className = "answer-btn";
+        btn.type = "button";
+        btn.textContent = option.text;
+
+        if (selectedValue === option.value) {
+          btn.classList.add("selected");
+        }
+
+        btn.addEventListener("click", () => selectAnswer(option));
+        answersEl.appendChild(btn);
+      });
+
+      backBtn.classList.toggle("hidden", state.current === 0);
+
+      const progressPercent = ((state.current + 1) / questions.length) * 100;
+      updateProgress(progressPercent, `${state.current + 1} / ${questions.length}`);
+    }
+
+    function recalculateScore(){
+      state.score = Object.values(state.answers).reduce((sum, item) => sum + item.score, 0);
+    }
+
+    function selectAnswer(option){
+      const q = questions[state.current];
+
+      state.answers[q.id] = {
+        value: option.value,
+        score: option.score
+      };
+
+      recalculateScore();
+
+      trackEvent("QuizAnswerSelected", {
+        question_id: q.id,
+        question_text: q.q,
+        answer: option.value,
+        score: option.score,
+        question_index: state.current + 1
+      });
+
+      if (state.current < questions.length - 1) {
+        state.current += 1;
+        renderQuestion();
+      } else {
+        showAnalyzing();
+      }
+    }
+
+    function showAnalyzing(){
+      hideAllScreens();
+      screenAnalyzing.classList.remove("hidden");
+      updateProgress(100, "AI analysis");
+
+      trackEvent("QuizCompleted", {
+        total_score: state.score
+      });
+
+      setTimeout(() => {
+        buildResult();
+        hideAllScreens();
+        screenResult.classList.remove("hidden");
+      }, 2200);
+    }
+
+    function updateProgress(percent, label){
+      progressBar.style.width = percent + "%";
+      stepLabel.textContent = label;
+    }
+
+    function clamp(num, min, max){
+      return Math.max(min, Math.min(num, max));
+    }
+
+    function formatCurrency(amount){
+      return "$" + amount.toLocaleString("en-US");
+    }
+
+    function buildResult(){
+      const score = state.score;
+      const automation = clamp(38 + score * 2.4, 48, 78);
+      const hours = Math.round(clamp(32 + score * 5.6, 40, 170));
+      const money = Math.round(clamp(1200 + score * 320, 2000, 12000));
+
+      state.result = {
+        automation: Math.round(automation),
+        hours,
+        money
+      };
+
+      document.getElementById("automationValue").textContent = `${state.result.automation}%`;
+      document.getElementById("hoursValue").textContent = `${state.result.hours} h`;
+      document.getElementById("moneyValue").textContent = formatCurrency(state.result.money);
+
+      const pain = state.answers.pain?.value || "";
+      const volume = state.answers.volume?.value || "";
+      const niche = state.answers.niche?.value || "";
+      const time = state.answers.time?.value || "";
+
+      const automations = [];
+
+      if (pain.includes("Customer replies")) {
+        automations.push("24/7 customer replies through an AI assistant");
+        automations.push("FAQ and typical inquiry handling");
+      }
+      if (pain.includes("Lead processing")) {
+        automations.push("Automatic lead processing and distribution");
+        automations.push("Call booking and lead qualification");
+      }
+      if (pain.includes("Sales")) {
+        automations.push("AI lead qualification and first-touch sales script");
+        automations.push("Lead nurturing through messengers");
+      }
+      if (pain.includes("Marketing")) {
+        automations.push("Content generation and AI support for marketing");
+      }
+      if (pain.includes("Reports")) {
+        automations.push("Auto-reports, analytics, and summaries");
+      }
+      if (pain.includes("Internal")) {
+        automations.push("AI knowledge base and internal team support");
+      }
+
+      if (volume.includes("50–200") || volume.includes("200+")) {
+        automations.push("Handling a high volume of inquiries without expanding the team");
+      }
+
+      if (automations.length < 4) {
+        automations.push("Lead qualification and inquiry prioritization");
+        automations.push("Data collection and short report preparation");
+      }
+
+      const uniqueAutomations = [...new Set(automations)].slice(0, 5);
+      const automationList = document.getElementById("automationList");
+      automationList.innerHTML = "";
+
+      uniqueAutomations.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        automationList.appendChild(li);
+      });
+
+      let solution = "🤖 AI Business Assistant";
+      if (pain.includes("Sales")) solution = "🤖 AI Sales Assistant";
+      if (pain.includes("Customer replies")) solution = "🤖 AI Support Assistant";
+      if (pain.includes("Reports")) solution = "🤖 AI Analytics Assistant";
+      if (pain.includes("Marketing")) solution = "🤖 AI Marketing Assistant";
+
+      let solutionText = `${solution} is the best scenario for a business in the “${niche}” niche. `;
+      solutionText += `It can automate the task of “${pain}”, reduce manual workload at a volume of “${volume}”, and cut routine work at the level of “${time}”. `;
+      solutionText += `The first impact is usually achieved through quick automation of inquiries, lead handling, lead qualification, and reporting.`;
+
+      document.getElementById("solutionText").textContent = solutionText;
+
+      let roiText = `With your current process volume, the main potential lies in reducing manual routine, speeding up responses to customers, and reducing lost leads. `;
+      roiText += `For a business profile like yours, AI most often pays off through team time savings, faster lead processing, and more consistent conversion from incoming inquiries.`;
+
+      document.getElementById("roiText").textContent = roiText;
+
+      document.getElementById("resultSubtitle").textContent =
+        `We calculated the result based on your answers about business stage, niche, main operational pain point, routine workload, and inquiry volume.`;
+
+      trackEvent("QuizResultShown", {
+        automation_percent: state.result.automation,
+        saved_hours: state.result.hours,
+        potential_saving_usd: state.result.money,
+        niche: state.answers.niche?.value || "",
+        pain: state.answers.pain?.value || ""
+      });
+    }
+
+    function buildLeadMessage(){
+      const stage = state.answers.stage?.value || "—";
+      const niche = state.answers.niche?.value || "—";
+      const pain = state.answers.pain?.value || "—";
+      const time = state.answers.time?.value || "—";
+      const volume = state.answers.volume?.value || "—";
+
+      return [
+        "Hello! I completed the AI business audit.",
+        "",
+        "My result:",
+        `• Automation potential: ${state.result.automation}%`,
+        `• Time savings: ${state.result.hours} h/month`,
+        `• Potential savings: ${formatCurrency(state.result.money)}`,
+        "",
+        "My answers:",
+        `• Business stage: ${stage}`,
+        `• Industry: ${niche}`,
+        `• Main pain point: ${pain}`,
+        `• Time spent on routine: ${time}`,
+        `• Inquiry volume: ${volume}`,
+        "",
+        "I would like to get a personalized AI plan."
+      ].join("\n");
+    }
+
+    function buildMessengerLinks(){
+      const message = buildLeadMessage();
+      const encodedMessage = encodeURIComponent(message);
+
+      messagePreview.textContent = message;
+
+      telegramBtn.href = `https://t.me/${TELEGRAM_USERNAME}?text=${encodedMessage}`;
+      whatsappBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+    }
+  </script>
+</body>
+</html>
